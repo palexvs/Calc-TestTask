@@ -6,6 +6,14 @@ describe Calc do
     @calc = Calc.new
   end
 
+  it "method 'get' with no arguments return 'true'" do
+    @calc.get.should be_true
+  end
+
+  it "method 'get' with arrays of num return 'true'" do
+    @calc.get(1,2,3).should be_true
+  end
+
   it "method 'minus' return 0 for empty input-data" do
     @calc.minus.should == 0
   end
