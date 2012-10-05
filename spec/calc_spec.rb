@@ -1,12 +1,9 @@
-require 'simplecov'
-SimpleCov.start if ENV["COVERAGE"]
-
-require './calc.rb'
+require 'spec_helper'
 
 describe Calc do
 
   before(:each) do
-    @calc = Calc.new
+    @calc = Calc::Calc.new
   end
 
   describe "method 'get'" do
@@ -18,8 +15,20 @@ describe Calc do
       @calc.get(1).should == [1]
     end
 
-    it "with arrays of num" do
+    it "with several nums" do
       @calc.get(1,2,3).should == [1,2,3]
+    end
+
+    it "with array of num" do
+      @calc.get([1,2,3]).should == [1,2,3]
+    end
+
+    it "with nested array" do
+      @calc.get([1,2,[3,4,],5]).should == [1,2,3,4,5]
+    end
+
+    it "with text" do
+      @calc.get([1,2,"text",3]).should == [1,2,3]
     end
 
     it "twice" do
